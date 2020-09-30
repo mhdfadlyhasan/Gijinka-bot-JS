@@ -1,7 +1,5 @@
 // https://stackoverflow.com/questions/18814221/adding-timestamps-to-all-console-messages
 
-var log = console.log
-
 module.exports = function () {
   originalLog = console.log;
   // Overwriting

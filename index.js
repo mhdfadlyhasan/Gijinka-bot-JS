@@ -1,11 +1,10 @@
 const { assignKelas, tambahKelas, listJadwal } = require('./classFunc.js')
 const discordBot = require('./bot.js')
-const channelID = process.env.channelID
 
 discordBot.bot.on('ready', () => {
   console.log(`Logged in as ${discordBot.bot.user.tag}!`)
-  assignKelas()
-  // tambahKelas('0000000', 1, '12:55', 'TEST')
+  assignKelas(discordBot.bot)
+  // tambahKelas(discordBot.bot, '0000000', 1, '12:55', 'TEST')
   // console.info(listJadwal())
 })
 

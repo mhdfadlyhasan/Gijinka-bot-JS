@@ -2,8 +2,6 @@ require('./logger.js')()
 const cron = require('node-cron')
 
 require('dotenv').config()
-const discordBot = require('./bot.js')
-const channelID = process.env.channelID
 
 const days  = [
     'Minggu',//0
@@ -16,7 +14,8 @@ const days  = [
   ]
 
 module.exports = class Kelas {
-    constructor(role, hari, jam, nama) {
+    constructor(client, role, hari, jam, nama) {
+        this.client = client
         this.nama = nama
         this.role = role
         this.hari = hari
@@ -63,7 +62,7 @@ module.exports = class Kelas {
 
                     console.log(`Notif kelas ${self.nama} dikirim`)
 
-                    discordBot.bot.channels.get(channelID).send(`REMINDER: ${minutesRemaining} menit lagi kelas <@&${self.role}>`)
+                    self.client.channels.get(self.client.channelID).send(`REMINDER: ${minutesRemaining} menit lagi kelas <@&${self.role}>`)
                 }, {
                     scheduled: true,
                     timezone: 'Asia/Jakarta'

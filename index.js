@@ -26,5 +26,12 @@ discordBot.bot.on('message', msg => {
         file: "https://i.kym-cdn.com/photos/images/newsfeed/001/897/645/8a2.jpg",
       }
       );
-    } 
+    }
+  else if (msg.content === 'chinked') {
+    msg.channel.send('get chinked\nhttps://www.youtube.com/watch?v=kw9Z9ZSEHQQ',
+      {
+        file: 'https://media1.tenor.com/images/f3980d29ff8d2825735e618968d2edc6/tenor.gif'
+      }
+    )
+  }
   })

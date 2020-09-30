@@ -3,6 +3,8 @@
 
 const Discord = require('discord.js')
 const bot = new Discord.Client()
+//create commands collections, this will contain all the commands gawr, euy, chink etc
+bot.commands = new Discord.Collection()
 const TOKEN = process.env.TOKEN
 const channelID = process.env.channelID
 

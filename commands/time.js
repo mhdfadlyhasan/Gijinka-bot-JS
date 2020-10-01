@@ -10,13 +10,13 @@ const days  = [
 
 module.exports = {
     name: 'time',
-    execute(msg,args){
+    execute(msg,args,classes){
         const time = new Date();
         msg.reply("sekarang jam " + time.getHours( {
             timeZone: 'Asia/Jakarta'
-        })+"." + time.getMinutes( {
+        }).toString().padStart(2, '0')+"." + time.getMinutes( {
             timeZone: 'Asia/Jakarta'
-        })+" Hari " + days[time.getDay( {
+        }).toString().padStart(2, '0')+" Hari " + days[time.getDay( {
             timeZone: 'Asia/Jakarta'
         })]);
     }

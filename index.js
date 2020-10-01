@@ -1,26 +1,28 @@
-const { assignKelas, tambahKelas, listJadwal } = require('./classFunc.js')
-const discordBot = require('./bot.js')
-const botCommands = require('./commands');
+require('./utilities/logger.js')()
+const { assignKelas } = require('./utilities/initClasses')
+const discordBot = require('./utilities/bot')
+const botCommands = require('./commands')
 
 discordBot.bot.on('ready', () => {
   console.log(`Logged in as ${discordBot.bot.user.tag}!`)
   assignKelas(discordBot.bot)
-  // tambahKelas(discordBot.bot, '0000000', 1, '12:55', 'TEST')
-  // console.info(listJadwal())
 })
 
 //get that sweet commands
 Object.keys(botCommands).map(key => {
-  console.log(key + "ini bot");
-
   //set the commands to collection of commands
-  discordBot.bot.commands.set(botCommands[key].name, botCommands[key]);
+  try {
+    discordBot.bot.commands.set(botCommands[key].name, botCommands[key]);
+    console.log(`Command '${key}' loaded`);
+  } catch (error) {
+    console.log(error)
+  }
 });
 
 discordBot.bot.on('message', msg => {
 
   //is string start with '>'
-  if(!msg.content.startsWith('>')) return;
+  if (!msg.content.startsWith('>')) return;
   //splitting > and get string after >
   var args = msg.content.split('>');
 
@@ -31,10 +33,11 @@ discordBot.bot.on('message', msg => {
   if (!discordBot.bot.commands.has(command)) return;
   //execute commands
   try {
-      discordBot.bot.commands.get(command).execute(msg,args);
-    } 
+    discordBot.bot.commands.get(command).execute(msg, args, discordBot.bot);
+    console.log(`Command ${command} executed`)
+  }
   catch (error) {
-      console.error(error);
-      msg.reply('there was an error trying to execute that command!');
-    }
-  })
+    console.error(error);
+    msg.reply('there was an error trying to execute that command!');
+  }
+})

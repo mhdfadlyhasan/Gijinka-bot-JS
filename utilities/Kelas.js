@@ -1,9 +1,5 @@
-require('./logger.js')()
 const cron = require('node-cron')
-
-require('dotenv').config()
-
-const days  = [
+const days = [
     'Minggu',//0
     'Senin',//1
     'Selasa',//2
@@ -11,7 +7,7 @@ const days  = [
     'Kamis',//4
     'Jumat',//5
     'Sabtu'//6
-  ]
+]
 
 module.exports = class Kelas {
     constructor(client, role, hari, jam, nama) {
@@ -21,6 +17,7 @@ module.exports = class Kelas {
         this.hari = hari
         this.jam = jam
         this._cronStr = []
+        this._scheduled = false
 
         // run every 10th minute
         var getCronSched = function (jam) {
@@ -29,15 +26,15 @@ module.exports = class Kelas {
             let date = new Date(Date.parse(jsonDate))
             let start = new Date(date.getTime() - 30 * 60000)
             let end = new Date(date.getTime() - 1 * 60000)
-            
+
             return [start, end]
         }
-        
+        // console.log(this.jam)
         var hour = getCronSched(this.jam)
 
-        let m = parseInt(jam.split(':')[1], 10)
+        let m = parseInt(this.jam.split(':')[1], 10)
         m = (m <= 0) ? 60 : m
-        
+
         //handle if <30 min
         if (m - 30 < 0) {
             this._cronStr.push(hour[0].getMinutes().toString().padStart(2, '0') + '-59/10 ' + hour[0].getHours().toString().padStart(2, '0') + ' ' + '* * ' + this.hari)
@@ -45,12 +42,22 @@ module.exports = class Kelas {
         } else {
             this._cronStr.push(hour[0].getMinutes().toString().padStart(2, '0') + '-' + hour[1].getMinutes().toString().padStart(2, '0') + '/10 ' + hour[0].getHours().toString().padStart(2, '0') + ' ' + '* * ' + this.hari)
         }
+
+        this.scheduleCronJobs()
+    }
+    get scheduled() {
+        return this._scheduled
     }
     get cronStr() {
         return this._cronStr
     }
     lihatInfoKelas() {
-        return `Kelas ${this.nama} di hari ${days[this.hari]} jam ${this.jam}`
+        let jsonDate = '2020-06-' + this.hari.toString().padStart(2, '0') + 'T' + this.jam + ':00'
+        let date = new Date(Date.parse(jsonDate))
+        return {
+            nama: this.nama,
+            date: date
+        }
     }
     scheduleCronJobs() {
         try {
@@ -59,7 +66,7 @@ module.exports = class Kelas {
                 cron.schedule(el, function () {
                     let date = new Date()
                     let menit_kelas = parseInt(self.jam.split(':')[1], 10);
-                    let minutesRemaining =  (menit_kelas > 0 ?  menit_kelas : 60) - date.getMinutes()
+                    let minutesRemaining = (menit_kelas > 0 ? 60 : menit_kelas) - date.getMinutes()
 
                     console.log(`Notif kelas ${self.nama} dikirim`)
 
@@ -70,6 +77,7 @@ module.exports = class Kelas {
                 })
                 console.log(`Created cron schedule for ${this.nama}`)
             })
+            this._scheduled = true
         } catch (error) {
             console.log(error)
         }

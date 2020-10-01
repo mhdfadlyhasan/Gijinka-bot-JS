@@ -3,7 +3,7 @@ module.exports = {
     execute(msg,args){
         msg.channel.send('a',
             {
-                file: './Asset/gawr.jpg'
+                file: './assets/gawr.jpg'
             }
         )
     }

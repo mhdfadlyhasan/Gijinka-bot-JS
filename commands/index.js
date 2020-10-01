@@ -4,5 +4,6 @@ module.exports = {
     Euy: require('./euy'),
     Time: require('./time'),
     ListKelas: require('./listKelas'),
-    tambahKelas: require('./tambahKelas')
+    tambahKelas: require('./tambahKelas'),
+    Pixivugoira: require('./pixivugoira')
 }

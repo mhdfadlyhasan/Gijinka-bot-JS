@@ -66,7 +66,7 @@ module.exports = class Kelas {
                 cron.schedule(el, function () {
                     let date = new Date()
                     let menit_kelas = parseInt(self.jam.split(':')[1], 10);
-                    let minutesRemaining = (menit_kelas > 0 ? 60 : menit_kelas) - date.getMinutes()
+                    let minutesRemaining = (menit_kelas > 0 ? menit_kelas : 60) - date.getMinutes()
 
                     console.log(`Notif kelas ${self.nama} dikirim`)
 

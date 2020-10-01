@@ -3,7 +3,7 @@ module.exports = {
     execute(msg,args){
         msg.channel.send('ayeuna poe rebo euy',
             {
-                file: './Asset/rebo.mp4'
+                file: './assets/rebo.mp4'
             }
         )
     }

@@ -1,13 +1,12 @@
 const axios = require('axios')
 module.exports = {
-    name: 'pixivugoria',
+    name: 'pixivugoira',
     execute(msg,args){
         //              0                      1                              2
         // args == [ 'pixiv', 'https://www.pixiv.net/en/artworks/84721311', 'gif' ]
         link = args[1]
         format = args[2]
         getMessage(msg,link,format)
-        console.info(args)
     }
 };
 

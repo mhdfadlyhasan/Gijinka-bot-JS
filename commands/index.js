@@ -5,5 +5,6 @@ module.exports = {
     Time: require('./time'),
     ListKelas: require('./listKelas'),
     tambahKelas: require('./tambahKelas'),
-    Pixivugoira: require('./pixivugoira')
+    Pixivugoira: require('./pixivugoira'),
+    Bruh: require('./bruh')
 }

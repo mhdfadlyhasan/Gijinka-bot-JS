@@ -21,14 +21,16 @@ Object.keys(botCommands).map(key => {
 
 discordBot.bot.on('message', msg => {
 
-  //is string start with '>'
+  //prefix '>'
   if (!msg.content.startsWith('>')) return;
-  //splitting > and get string after >
-  var args = msg.content.split('>');
+  
+  //remove all whitespace
+  let args = msg.content.split(/ +/);
+  //have to remove '>' from command
 
-  //getting array of text that splitted by space, 
-  args = args[1].toLowerCase().split(' ');
-  const command = args[0];
+  const command = args[0].replace('>','');
+  console.info(args)
+  
   //check commands collection for inputed commands
   if (!discordBot.bot.commands.has(command)) return;
   //execute commands

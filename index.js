@@ -29,7 +29,7 @@ discordBot.bot.on('message', msg => {
   //have to remove '>' from command
 
   const command = args[0].replace('>','');
-  console.info(args)
+  // console.info(args)
   
   //check commands collection for inputed commands
   if (!discordBot.bot.commands.has(command)) return;

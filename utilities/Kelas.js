@@ -17,12 +17,11 @@ module.exports = class Kelas {
         this.hari = hari
         this.jam = jam
         this._cronStr = []
-        this._scheduled = false
 
         // run every 10th minute
         var getCronSched = function (jam) {
             // dummy date, we'll only use the hour and minute
-            let jsonDate = '2013-11-09T' + jam + ":00"
+            let jsonDate = '2013-11-09T' + jam + ':00'
             let date = new Date(Date.parse(jsonDate))
             let start = new Date(date.getTime() - 30 * 60000)
             let end = new Date(date.getTime() - 1 * 60000)
@@ -42,6 +41,9 @@ module.exports = class Kelas {
         } else {
             this._cronStr.push(hour[0].getMinutes().toString().padStart(2, '0') + '-' + hour[1].getMinutes().toString().padStart(2, '0') + '/10 ' + hour[0].getHours().toString().padStart(2, '0') + ' ' + '* * ' + this.hari)
         }
+
+        // push for M-0
+        this._cronStr.push(this.jam.split(':')[1] + ' ' + this.jam.split(':')[0] + ' ' + '* * ' + this.hari)
 
         this.scheduleCronJobs()
     }
@@ -69,8 +71,9 @@ module.exports = class Kelas {
                     let minutesRemaining = (menit_kelas > 0 ? menit_kelas : 60) - date.getMinutes()
 
                     console.log(`Notif kelas ${self.nama} dikirim`)
-
-                    self.client.channels.get(self.client.channelID).send(`REMINDER: ${minutesRemaining} menit lagi kelas <@&${self.role}>`)
+                    const mulai = self.client.emojis.find(emoji => emoji.name === 'mulai')
+                    var str = (minutesRemaining > 0) ? `REMINDER: ${minutesRemaining} menit lagi kelas <@&${self.role}>` : `KELAS <@&${self.role}> di${mulai}`
+                    self.client.channels.get(self.client.channelID).send(str)
                 }, {
                     scheduled: true,
                     timezone: 'Asia/Jakarta'

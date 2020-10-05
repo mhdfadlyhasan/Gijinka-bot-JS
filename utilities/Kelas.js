@@ -66,14 +66,23 @@ module.exports = class Kelas {
             var self = this
             this._cronStr.forEach(el => {
                 cron.schedule(el, function () {
-                    let date = new Date()
-                    let menit_kelas = parseInt(self.jam.split(':')[1], 10);
-                    let minutesRemaining = (menit_kelas > 0 ? menit_kelas : 60) - date.getMinutes()
+                    function getMinutesRemaining(hStr) {
+                        let jam = hStr + ':00'
+                        let jsonDate = '2013-11-09T'
 
-                    console.log(`Notif kelas ${self.nama} dikirim`)
+                        let now = new Date()
+                        let end = new Date(Date.parse(jsonDate + jam))
+
+                        let diff = end - new Date(Date.parse(jsonDate + now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0') + ':00'))
+                        return Math.floor((diff/1000)/60)
+                    }
+                    let minutesRemaining = getMinutesRemaining(self.jam)
+                    
                     const mulai = self.client.emojis.find(emoji => emoji.name === 'mulai')
                     var str = (minutesRemaining > 0) ? `REMINDER: ${minutesRemaining} menit lagi kelas <@&${self.role}>` : `KELAS <@&${self.role}> di${mulai}`
+                    
                     self.client.channels.get(self.client.channelID).send(str)
+                    console.log(`Notif kelas ${self.nama} dikirim`)
                 }, {
                     scheduled: true,
                     timezone: 'Asia/Jakarta'

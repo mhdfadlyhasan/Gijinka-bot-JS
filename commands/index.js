@@ -6,5 +6,6 @@ module.exports = {
     ListKelas: require('./listKelas'),
     tambahKelas: require('./tambahKelas'),
     Pixivugoira: require('./pixivugoira'),
-    Bruh: require('./bruh')
+    Bruh: require('./bruh'),
+    Help: require('./help')
 }

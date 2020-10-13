@@ -13,5 +13,6 @@ const adminRoleID = process.env.adminRoleID
 bot.channelID = channelID
 bot.adminRoleID = adminRoleID
 bot.login(TOKEN)
+bot.prefix = process.env.prefix
 
 exports.bot = bot

@@ -1,6 +1,7 @@
 const axios = require('axios')
 module.exports = {
     name: 'pixivugoira',
+    description: 'Download ugoira from pixiv',
     execute(msg,args){
         //              0                      1                              2
         // args == [ 'pixiv', 'https://www.pixiv.net/en/artworks/84721311', 'gif' ]

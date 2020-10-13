@@ -9,7 +9,9 @@
   "author": "Michiel Mulders",
   "license": "ISC",
   "dependencies": {
+    "@discordjs/uws": "^10.149.0",
     "axios": "^0.20.0",
+    "better-sqlite3": "^7.1.1",
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0",
     "lodash": "^4.17.20",

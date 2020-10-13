@@ -1,5 +1,7 @@
 module.exports = {
     name: 'bruh',
+    description: 'for bruh',
+    usage: 'bruh',
     execute(msg,args){
         file_names = [
             'bruh1.jpg',

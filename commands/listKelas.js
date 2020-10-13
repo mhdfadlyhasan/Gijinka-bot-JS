@@ -10,8 +10,10 @@ const days = [
 ]
 module.exports = {
     name: 'listkelas',
+    description: 'List jadwal mata kuliah',
+    usage: 'listkelas',
     execute(msg, args) {
-        var list = []
+        var list = msg.client.getJadwal.all()
         var toSend = {
             embed: {
                 color: 3447003,
@@ -19,8 +21,11 @@ module.exports = {
                 fields: []
             }
         }
-        classes.forEach(element => {
-            list.push(element.lihatInfoKelas())
+        
+        _.forEach(list, function(element) {
+            let jsonDate = '2020-06-' + element.hari.toString().padStart(2, '0') + 'T' + element.jam + ':00'
+            let date = new Date(Date.parse(jsonDate))
+            element.date = date
         })
 
         list = _.sortBy(list, function (dateObj) {
@@ -39,11 +44,11 @@ module.exports = {
                 total += 1
                 toSend.embed.fields.push({
                     name: days[d],
-                    value: `${i}. **${el.nama}** jam \`${el.date.getHours(tz).toString().padStart(2, '0')}:${el.date.getMinutes(tz).toString().padStart(2, '0')}\``
+                    value: `${i}. **${el.matkul}** jam \`${el.date.getHours(tz).toString().padStart(2, '0')}:${el.date.getMinutes(tz).toString().padStart(2, '0')}\``
                 })
             } else {
                 i += 1
-                toSend.embed.fields[total].value += `\n${i}. **${el.nama}** jam \`${el.date.getHours(tz).toString().padStart(2, '0')}:${el.date.getMinutes(tz).toString().padStart(2, '0')}\``
+                toSend.embed.fields[total].value += `\n${i}. **${el.matkul}** jam \`${el.date.getHours(tz).toString().padStart(2, '0')}:${el.date.getMinutes(tz).toString().padStart(2, '0')}\``
             }
         })
 

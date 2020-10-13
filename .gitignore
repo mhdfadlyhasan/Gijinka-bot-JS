@@ -61,5 +61,5 @@ typings/
 .next
 
 #sqlite shm and wal
-.sqlite-shm
-.sqlite-wal
+db/*.sqlite-shm
+db/*.sqlite-wal

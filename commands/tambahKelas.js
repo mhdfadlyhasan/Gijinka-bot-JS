@@ -18,7 +18,8 @@ module.exports = {
                 return date instanceof Date && !isNaN(date)
             }
             if (isDateValid([hari, jam])) {
-                if(msg.client.getKelas.get(roleID) !== null) {
+                console.log(msg.client.getKelas.get(roleID))
+                if(typeof msg.client.getKelas.get(roleID) !== 'undefined' && msg.client.getKelas.get(roleID) !== null) {
                     try {
                         let idx = lo.findIndex(classes, function(o) { return o.role === roleID; })
 

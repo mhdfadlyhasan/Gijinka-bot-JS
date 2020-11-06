@@ -36,7 +36,7 @@ module.exports = {
                     }
                 } else {
                     classes.push(new Kelas(msg.client, roleID, hari, jam, matkul.join(' ')))
-                    msg.reply(`kelas \`${matkul}\` berhasil ditambahkan.`)
+                    msg.reply(`kelas \`${matkul.join(' ')}\` berhasil ditambahkan.`)
                 }
                 msg.client.setKelas.run({roleID: roleID, hari: hari, jam: jam, matkul: matkul.join(' ')})
             } else {

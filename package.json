@@ -12,7 +12,8 @@
     "discord.js": "^11.6.4",
     "dotenv": "^8.2.0",
     "lodash": "^4.17.20",
-    "node-cron": "^2.0.3"
+    "node-cron": "^2.0.3",
+    "uwufy": "^1.0.6"
   },
   "engines": {
     "node": "13.9.0"

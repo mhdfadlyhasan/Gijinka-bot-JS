@@ -7,5 +7,6 @@ module.exports = {
     tambahKelas: require('./tambahKelas'),
     Pixivugoira: require('./pixivugoira'),
     Bruh: require('./bruh'),
+    Uwufy: require('./uwu'),
     Help: require('./help')
 }

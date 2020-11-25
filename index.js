@@ -45,7 +45,7 @@ discordBot.bot.on('message', msg => {
   let args = msg.content.split(/ +/)
   //have to remove '>' from command
 
-  const command = args[0].replace('>','')
+  const command = args[0].replace(discordBot.bot.prefix,'')
   // console.info(args)
   
   //check commands collection for inputed commands

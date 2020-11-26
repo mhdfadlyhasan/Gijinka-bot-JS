@@ -5,7 +5,7 @@ module.exports = {
     name: 'setkelas',
     description: 'Tambah kelas ke jadwal',
     usage: 'setkelas [roleID] [hari] [jam] [nama matkul]',
-    async execute(msg, args) {
+    execute(msg, args) {
         if (msg.member.roles.has(msg.client.adminRoleID)) {
             var [_, roleID, hari, jam, ...matkul] = args
             
@@ -18,8 +18,8 @@ module.exports = {
                 return date instanceof Date && !isNaN(date)
             }
             if (isDateValid([hari, jam])) {
-                const mk = await msg.client.getKelas()
-                if(typeof mk !== 'undefined' && mk !== null && mk.length > 0) {
+                console.log(msg.client.getKelas.get(roleID))
+                if(typeof msg.client.getKelas.get(roleID) !== 'undefined' && msg.client.getKelas.get(roleID) !== null) {
                     try {
                         let idx = lo.findIndex(classes, function(o) { return o.role === roleID; })
 
@@ -38,7 +38,7 @@ module.exports = {
                     classes.push(new Kelas(msg.client, roleID, hari, jam, matkul.join(' ')))
                     msg.reply(`kelas \`${matkul.join(' ')}\` berhasil ditambahkan.`)
                 }
-                const res = await msg.client.setKelas(roleID, hari, jam, matkul.join(' '))
+                msg.client.setKelas.run({roleID: roleID, hari: hari, jam: jam, matkul: matkul.join(' ')})
             } else {
                 throw new Error('InvalidDate')
             }

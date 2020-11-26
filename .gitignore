@@ -60,3 +60,6 @@ typings/
 # next.js build output
 .next
 
+#sqlite shm and wal
+db/*.sqlite-shm
+db/*.sqlite-wal

@@ -9,4 +9,5 @@ module.exports = {
     Bruh: require('./bruh'),
     Uwufy: require('./uwu'),
     Help: require('./help'),
+    Tugas: require('./tugas/tugas')
 }

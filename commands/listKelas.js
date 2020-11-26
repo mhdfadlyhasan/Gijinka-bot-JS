@@ -12,8 +12,10 @@ module.exports = {
     name: 'listkelas',
     description: 'List jadwal mata kuliah',
     usage: 'listkelas',
-    execute(msg, args) {
-        var list = msg.client.getJadwal.all()
+    async execute(msg, args) {
+        var list = await msg.client.getJadwal()
+
+        console.log(list)
         var toSend = {
             embed: {
                 color: 3447003,

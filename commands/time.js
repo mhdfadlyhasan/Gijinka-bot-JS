@@ -10,6 +10,8 @@ const days  = [
 
 module.exports = {
     name: 'time',
+    description: 'Wot toime is it?',
+    usage: 'time',
     execute(msg,args,classes){
         const time = new Date();
         msg.reply("sekarang jam " + time.getHours( {

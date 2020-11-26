@@ -2,11 +2,11 @@ const Kelas = require('./Kelas.js')
 
 global.classes = []
 
-function assignKelas(client){
-    var listKelas = client.getJadwal.all()
+async function assignKelas(client){
+    var listKelas = await client.getJadwal()
 
     listKelas.forEach(element => {
-        classes.push(new Kelas(client, element.roleID, element.hari, element.jam, element.matkul))
+        classes.push(new Kelas(client, element.roleid, element.hari, element.jam, element.matkul))
     })
 }
 

@@ -1,27 +1,16 @@
 require('./utilities/logger.js')()
 const { assignKelas } = require('./utilities/initClasses')
+const { setKelas, getJadwal, getKelas } = require('./utilities/connect')
 const discordBot = require('./utilities/bot')
 const botCommands = require('./commands')
-const SQLite = require("better-sqlite3")
-const sql = new SQLite('./db/bot.sqlite')
 
 discordBot.bot.on('ready', () => {
 
   console.log(`Logged in as ${discordBot.bot.user.tag}!`)
 
-  const table = sql.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'kelas';").get()
-  if (!table['count(*)']) {
-    // If the table isn't there, create it and setup the database correctly.
-    sql.prepare("CREATE TABLE kelas (roleID TEXT PRIMARY KEY, hari INTEGER, jam TEXT, matkul TEXT);").run();
-    // Ensure that the "id" row is always unique and indexed.
-    sql.prepare("CREATE UNIQUE INDEX idx_role ON kelas (roleID);").run()
-    sql.pragma("synchronous = 1")
-    sql.pragma("journal_mode = wal")
-  }
-
-  discordBot.bot.getJadwal = sql.prepare("SELECT * FROM kelas;")
-  discordBot.bot.getKelas = sql.prepare("SELECT * FROM kelas WHERE roleID = ?;")
-  discordBot.bot.setKelas = sql.prepare("INSERT OR REPLACE INTO kelas (roleID, hari, jam, matkul) VALUES (@roleID, @hari, @jam, @matkul);")
+  discordBot.bot.getJadwal = getJadwal
+  discordBot.bot.getKelas = getKelas
+  discordBot.bot.setKelas = setKelas
 
   assignKelas(discordBot.bot)
 })

@@ -3,26 +3,40 @@
   "version": "1.0.0",
   "description": "Discord bot for SitePoint",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Michiel Mulders",
   "license": "ISC",
   "dependencies": {
+    "@discordjs/uws": "^10.149.0",
     "axios": "^0.20.0",
-    "discord.js": "^11.5.1",
+    "discord.js": "^11.6.4",
     "dotenv": "^8.2.0",
+    "fs": "0.0.1-security",
     "lodash": "^4.17.20",
-    "node-cron": "^2.0.3"
+    "node-cron": "^2.0.3",
+    "pg": "^8.5.1",
+    "uwufy": "^1.0.6"
+  },
+  "engines": {
+    "node": "13.9.0"
   },
   "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sitepoint-editors/discord-bot-sitepoint.git"
   },
+  "scripts": {
+    "start": "node index.js"
+  },
   "keywords": [],
   "bugs": {
     "url": "https://github.com/sitepoint-editors/discord-bot-sitepoint/issues"
   },
-  "homepage": "https://github.com/sitepoint-editors/discord-bot-sitepoint#readme"
+  "homepage": "https://github.com/sitepoint-editors/discord-bot-sitepoint#readme",
+  "production": {
+    "username": "ggjyddlnmfepns",
+    "password": "37c2a5762e38648e7ce0eafacce3162f8c2b09139a8468b62babe0722d02ca9c",
+    "database": "dkfsc40oli0ag",
+    "host": "ec2-107-21-201-57.compute-1.amazonaws.com",
+    "dialect": "postgres"
+  }
 }

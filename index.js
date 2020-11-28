@@ -1,6 +1,6 @@
 require('./utilities/logger.js')()
 const { assignKelas } = require('./utilities/initClasses')
-const { setKelas, getJadwal, getKelas } = require('./utilities/connect')
+const { setKelas, getJadwal, getKelas } = require('./utilities/db/dbkelas')
 const discordBot = require('./utilities/bot')
 const botCommands = require('./commands')
 

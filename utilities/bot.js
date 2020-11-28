@@ -2,7 +2,6 @@
 // include it if you want to send message through your bot
 
 require('dotenv').config()
-const { client } = require('./connect')
 const Discord = require('discord.js')
 const bot = new Discord.Client()
 //create commands collections, this will contain all the commands gawr, euy, chink etc

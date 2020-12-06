@@ -1,33 +1,25 @@
 const _ = require('lodash')
-const days = [
-    'Minggu',//0
-    'Senin',//1
-    'Selasa',//2
-    'Rabu',//3
-    'Kamis',//4
-    'Jumat',//5
-    'Sabtu'//6
-]
+
 module.exports = {
     name: 'lstugas',
     description: 'list tugas kalian, kerjain woi!',
     usage: 'lstugas',
     async execute(msg,args){
-        var list = await msg.client.getTugas()
-        toSend = 'Tugas anda!\n'
-        _.forEach(list, function(element) {
-                // let jsonDate = '2020-06-' + element.hari.toString().padStart(2, '0') + 'T' + element.jam + ':00'
-                // let date = new Date(Date.parse(jsonDate))
-                // element.date = date
-                toSend +=  `${element.roleid} jam ${element.deadline_jam} deskripsi: ${element.deskripsi} tanggal: ${element.tanggal}`
-            })
-        // var toSend = {
+        var toSend = ""
+        // {
         //     embed: {
-        //         color: 3447003,
-        //         title: "**Daftar Kelas**",
+        //         color: 287888,
+        //         title: "**Daftar Tugas**",
         //         fields: []
         //     }
         // }
+        var i = 1
+        _.forEach(gbTugas, function(element) {
+            var namakelas = classes.find(kelas=>kelas.role==element.role)
+            var date = `${element.tanggal.getDate().toString().padStart(2, '0')}-${(element.tanggal.getMonth()+1).toString().padStart(2, '0')}-${element.tanggal.getFullYear().toString().padStart(2, '0')}`
+            toSend+=`${i}.${namakelas.nama} Jam ${element.jam} tanggal: ${date}\n`
+            i+=1
+        })
         
         // _.forEach(list, function(element) {
         //     let jsonDate = '2020-06-' + element.hari.toString().padStart(2, '0') + 'T' + element.jam + ':00'
@@ -41,7 +33,6 @@ module.exports = {
 
         // var day = 0
         // var total = -1
-        // var i = 0
         // const tz = { timeZone: 'Asia/Jakarta' }
         // _.forEach(list, function(el) {
         //     var d = el.date.getDay(tz)

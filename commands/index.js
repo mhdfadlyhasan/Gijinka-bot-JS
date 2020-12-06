@@ -10,5 +10,6 @@ module.exports = {
     Uwufy: require('./uwu'),
     Help: require('./help'),
     LsTugas: require('./tugas/lstugas'),
-    AddTugas: require('./tugas/addtugas')
+    AddTugas: require('./tugas/addtugas'),
+    DetailTugas: require('./tugas/detailtugas')
 }

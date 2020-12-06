@@ -1,9 +1,10 @@
 require('./utilities/logger.js')()
 const { assignKelas } = require('./utilities/initClasses')
+const {assignTugas} = require('./utilities/initTugas')
 const { setKelas, getJadwal, getKelas } = require('./utilities/db/dbkelas')
 const discordBot = require('./utilities/bot')
 const botCommands = require('./commands')
-const { addTugas, getTugas } = require('./utilities/db/dbtugas')
+const { addTugas, getTugas, getRoleId } = require('./utilities/db/dbtugas')
 
 discordBot.bot.on('ready', () => {
 
@@ -14,8 +15,10 @@ discordBot.bot.on('ready', () => {
   discordBot.bot.setKelas = setKelas
   discordBot.bot.addTugas = addTugas
   discordBot.bot.getTugas = getTugas
+  discordBot.bot.getRoleId = getRoleId
 
   assignKelas(discordBot.bot)
+  assignTugas(discordBot.bot)
 })
 
 //get that sweet commands

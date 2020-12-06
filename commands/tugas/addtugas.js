@@ -1,4 +1,4 @@
-const Kelas = require('../../utilities/Kelas.js')
+const Tugas = require('../../utilities/Tugas.js')
 const lo = require('lodash')
 
 module.exports = {
@@ -8,35 +8,23 @@ module.exports = {
     //extract hari dari tanggal deadline
     //insert into [nama kelas] [hari] [tanggal deadline] [jam] [Deskripsi tugas]
     async execute(msg, args) {
-        var [_, nama_kelas, tanggal, jam, ...deskripsi] = args    
-        const res = await msg.client.addTugas(nama_kelas, tanggal, jam, deskripsi.join(' '))
+        var [_, role, tanggal, jam, ...deskripsi] = args    
+        
         //masih error res belum bisa mendapatkan berhasil/gagal
-        if(res){
-            msg.reply(`kelas \`${nama_kelas}\` berhasil ditambahkan.`)
-            const mk = await msg.client.getTugas()
+        // if(res){
+            // role, hari, jam, deskripsi,tanggal
             
-                // if(typeof mk !== 'undefined' && mk !== null && mk.length > 0) {
-                //     try {
-                //         let idx = lo.findIndex(tugas, function(o) { 
-                //             return o.role === roleID; 
-                //         })
-
-                //         // update jadwal and restart the cronjobs
-                //         // console.log(tugas[idx].cronStr)
-                //         tugas[idx].setJadwalKelas(roleID, hari, jam, matkul.join(' '))
-                //         tugas[idx].stopCronJobs()
-                //         tugas[idx].scheduleCronJobs()
-                //         // console.log(tugas[idx].cronStr)
-                //     } catch (error) {
-                //         console.log(error)
-                //     }
-                // } else {
-                //     classes.push(new Kelas(msg.client, roleID, hari, jam, matkul.join(' ')))
-                //     msg.reply(`kelas \`${matkul.join(' ')}\` berhasil ditambahkan.`)
-                // }
-                // const res = await msg.client.setKelas(roleID, hari, jam, matkul.join(' '))
-        }
-        else msg.reply("Error ketika menambahkan tugas")
+            var role = role.replace(/[^a-zA-Z0-9 ]/g, "");
+            console.log(role)
+            const res = await msg.client.addTugas(role, tanggal, jam, deskripsi.join(' '))
+            
+            //client, role, hari, jam, deskripsi,tanggal
+            // var roleid = await msg.client.getRoleId(role)
+            gbTugas.push(new Tugas(msg.client, role, jam,deskripsi.join(' '), tanggal))
+            //client, role, hari, jam, deskripsi,tanggal
+            msg.reply(`Tugas berhasil ditambahkan.`)
+        // }
+        // else msg.reply("Error ketika menambahkan tugas")
         // if (msg.member.roles.has(msg.client.adminRoleID)) {
         //     let isDateValid = function (arr) {
         //         let hari = arr[0]

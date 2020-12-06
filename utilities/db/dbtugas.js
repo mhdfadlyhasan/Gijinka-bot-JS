@@ -1,34 +1,35 @@
 const {client} = require('./connect')
-// async function setTugas(roleid, hari, jam, matkul){
-//     const res = await client.query('INSERT INTO tugas VALUES ($1, $2, $3, $4) ON CONFLICT (roleid) DO UPDATE SET roleid = Excluded.roleid, hari = Excluded.hari, jam = Excluded.jam, matkul = Excluded.matkul;', 
-//         [roleid, hari, jam, matkul], function (err, result) {
-//             if (err) {
-//                 console.log(err)
-//                 throw err
-//             }
-//             return result
-//     })
-//     return res
-// }
-// async function getTugas(){
-//     const res = await client.query('SELECT * FROM tugas').then(result => {
-//         return result.rows
-//     }).catch(e => console.error(e.stack))
-//     return res
-// }
-
-// async function getTugas(roleid){
-//     const res = await client.query('SELECT * FROM tugas WHERE roleid = $1', [roleid], function (err, result) {
-//         if (err) {
-//             console.log(err)
-//             throw err
-//         }
-//         return result.rows
-//     })
-//     return res
-// }
-
+async function addTugas(nama_kelas,tanggal,jam,deskripsi){
+    //setkelas [nama kelas] [tanggal deadline] [jam] [Deskripsi tugas]'
+    // insert into [nama kelas] [hari] [tanggal deadline] [jam] [Deskripsi tugas]
+    const getHari = function (tanggal){
+        var date = new Date(Date.parse(tanggal))
+        return (date.getDay())
+    }
+    //throw error masih salah, apabila query salah, addtugas.js ga bisa tahu
+        try {
+            var res = await client.query('INSERT INTO tugas(roleid,hari,tanggal,deadline_jam,deskripsi)'+
+            'VALUES ((select roleid from kelas where kelas.matkul = $1) , $2, $3, $4,$5) ', 
+                [nama_kelas,getHari(tanggal),tanggal,jam,deskripsi], function (err, result) {
+                    if(result==null){
+                        // throw err
+                        throw new Error("ada error")
+                    }
+                }) 
+            return true
+        } catch (error) {
+            console.log(error)
+            return false
+        }
+    // return false
+}
+async function getTugas(){
+    const res = await client.query('SELECT * FROM tugas').then(result => {
+        return result.rows
+    }).catch(e => console.error(e.stack))
+    return res
+}
 
 module.exports = {
-    setTugas,getTugas
+    addTugas,getTugas
 }

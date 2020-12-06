@@ -9,19 +9,17 @@ const days = [
     'Sabtu'//6
 ]
 module.exports = {
-    name: 'tugas',
+    name: 'lstugas',
     description: 'list tugas kalian, kerjain woi!',
-    usage: 'tugas',
-    execute(msg,args){
-        var list = msg.client.getTugas.all()
+    usage: 'lstugas',
+    async execute(msg,args){
+        var list = await msg.client.getTugas()
         toSend = 'Tugas anda!\n'
-        console.log(list)
         _.forEach(list, function(element) {
                 // let jsonDate = '2020-06-' + element.hari.toString().padStart(2, '0') + 'T' + element.jam + ':00'
                 // let date = new Date(Date.parse(jsonDate))
                 // element.date = date
-                console.log(element.jam)
-                toSend +=  `${element.matkul} jam ${element.jam} deskripsi: ${element.deskripsi}`
+                toSend +=  `${element.roleid} jam ${element.deadline_jam} deskripsi: ${element.deskripsi} tanggal: ${element.tanggal}`
             })
         // var toSend = {
         //     embed: {

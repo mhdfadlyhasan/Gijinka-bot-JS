@@ -1,8 +1,8 @@
 const Tugas = require('./Tugas.js')
 
-global.gbTugas = []
 
 async function assignTugas(client){
+    global.gbTugas = []
     var listTugas = await client.getTugas()
 
     listTugas.forEach(element => {

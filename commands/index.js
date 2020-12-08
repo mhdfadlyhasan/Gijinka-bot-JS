@@ -11,5 +11,6 @@ module.exports = {
     Help: require('./help'),
     LsTugas: require('./tugas/lstugas'),
     AddTugas: require('./tugas/addtugas'),
-    DetailTugas: require('./tugas/detailtugas')
+    DetailTugas: require('./tugas/detailtugas'),
+    CleanChannel: require('./cleanchan'),
 }

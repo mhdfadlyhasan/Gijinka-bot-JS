@@ -8,9 +8,11 @@ const bot = new Discord.Client()
 bot.commands = new Discord.Collection()
 const TOKEN = process.env.TOKEN
 const channelID = process.env.channelID
+const channelTugasID = process.env.channelTugasID
 const adminRoleID = process.env.adminRoleID
 
 bot.channelID = channelID
+bot.channelTugasID = channelTugasID
 bot.adminRoleID = adminRoleID
 bot.login(TOKEN)
 bot.prefix = process.env.prefix

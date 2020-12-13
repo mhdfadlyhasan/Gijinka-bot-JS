@@ -30,7 +30,6 @@ module.exports = class Tugas {
         return this.tanggal.getDate()-date.getDate()
     }
     getCronSched(){
-        // console.log(this.jam)
         var jam = this.jam.split(':')
         this._cronStr.push(`${parseInt(jam[1])} ${parseInt(jam[0])} * * *`)
     }
@@ -45,8 +44,7 @@ module.exports = class Tugas {
                     var str = (daysRemaining > 0) ? 
                         `REMINDER: ${daysRemaining} hari lagi Tugas <@&${self.role}> deadline Jam:${self.jam}` : 
                         `Tugas <@&${self.role}> deadline hari ini Jam:${self.jam}`
-
-                    self.client.channels.get(self.client.channelID).send(str)
+                    self.client.channels.get(self.client.channelTugasID).send(str)
                     console.log(`Notif Tugas dikirim`)
                 }, {
                     scheduled: true,

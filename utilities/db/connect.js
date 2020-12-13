@@ -6,9 +6,9 @@ var connectionString = process.env.DATABASE_URL
 const client = new Client({
     connectionString: process.env.DATABASE_URL,
     connectionString: connectionString,
-    // ssl: {
-    //     rejectUnauthorized: false
-    // }
+    ssl: {
+        rejectUnauthorized: false
+    }
 })
 client.connect()
 exports.client = client

@@ -8,5 +8,9 @@ module.exports = {
     Pixivugoira: require('./pixivugoira'),
     Bruh: require('./bruh'),
     Uwufy: require('./uwu'),
-    Help: require('./help')
+    Help: require('./help'),
+    LsTugas: require('./tugas/lstugas'),
+    AddTugas: require('./tugas/addtugas'),
+    DetailTugas: require('./tugas/detailtugas'),
+    CleanChannel: require('./cleanchan'),
 }

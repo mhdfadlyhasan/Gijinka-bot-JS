@@ -16,16 +16,22 @@ const getMessage = async (msg,link,format) =>{
     try{
         msg.channel.send('Please wait this could take a minute');
         //get file link from ugoira.dataprocessingclub.org
+        
+        link = encodeURIComponent(link)
+        console.log(link)
         pesan = await axios.get(
             `http://ugoira.dataprocessingclub.org/convert?url=${link}`+
             `&format=${format}`
         )
-        msg.channel.send(pesan.data.url);
+        if(pesan.data.url == null){
+            msg.channel.send(`failed to retrive ugoira,${pesan.data.error}`)
+        }
+        else msg.channel.send(pesan.data.url);
+
     }catch(error){
-        msg.channel.send(`failed to retrive ugoira,${pesan.data.error}`)
+        msg.channel.send(`failed to retrive ugoira,${error}`)
     }
 }
-
 const validateFormat = (msg,format) => {
 
     if (format.toLowerCase()!='webm'&&format.toLowerCase()!='gif'){

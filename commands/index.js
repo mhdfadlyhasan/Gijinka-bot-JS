@@ -15,5 +15,6 @@ module.exports = {
     CleanChannel: require('./cleanchan'),
     Voice: require('./voice'),
     Judi: require('./judi'),
+    saucenao: require('./saucenao'),
     S: require('./s'),
 }

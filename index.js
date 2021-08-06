@@ -1,6 +1,7 @@
 require('./utilities/logger.js')()
 const { assignKelas } = require('./utilities/initClasses')
 const {assignTugas} = require('./utilities/initTugas')
+const {startCryptoCron} = require('./utilities/initCrypto')
 const { setKelas, getJadwal, getKelas } = require('./utilities/db/dbkelas')
 const discordBot = require('./utilities/bot')
 const botCommands = require('./commands')
@@ -19,6 +20,7 @@ discordBot.bot.on('ready', () => {
 
   assignKelas(discordBot.bot)
   assignTugas(discordBot.bot)
+  startCryptoCron(discordBot.bot)
 })
 
 //get that sweet commands

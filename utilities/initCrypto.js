@@ -1,15 +1,12 @@
-const cron = require('node-cron')
 const axios = require("axios")
 function startCryptoCron(client) {
-    cron.schedule('* * * * *', async function () {
-        var str = await axios.get('https://indodax.com/api/price_increments')
-        client.channels.get('873052497843978270').send(str.data.increments.btc_idr)
-        console.log(`info tiap menit dikirim`)
-    }, {
-        scheduled: true,
-        timezone: 'Asia/Jakarta'
-    })    
-    console.log('init')
+    client.channels.get('873052497843978270').send('Harga crypto tiap menit').then((msg) => {
+        setTimeout( async () => {
+            var str = await axios.get('https://indodax.com/api/price_increments')
+            console.log(`info tiap menit dikirim`)
+            msg.edit(str.data.increments.btc_idr)
+        },60000)
+    })
 }
 
 

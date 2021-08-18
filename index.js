@@ -24,7 +24,6 @@ discordBot.bot.on('ready', () => {
 })
 
 //get that sweet commands
-console.log(botCommands)
 Object.keys(botCommands).map(key => {
   //set the commands to collection of commands
   try {

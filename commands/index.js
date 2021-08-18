@@ -17,4 +17,5 @@ module.exports = {
     Judi: require('./judi'),
     saucenao: require('./saucenao'),
     S: require('./s'),
+    Mocking: require('./mocking')
 }

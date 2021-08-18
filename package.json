@@ -8,6 +8,7 @@
   "dependencies": {
     "@discordjs/opus": "^0.4.0",
     "@discordjs/uws": "^10.149.0",
+    "@strdr4605/mockingcase": "^1.10.5",
     "axios": "^0.21.1",
     "discord.js": "^11.6.4",
     "dotenv": "^8.2.0",

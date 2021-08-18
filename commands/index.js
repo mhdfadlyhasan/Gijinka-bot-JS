@@ -13,4 +13,9 @@ module.exports = {
     AddTugas: require('./tugas/addtugas'),
     DetailTugas: require('./tugas/detailtugas'),
     CleanChannel: require('./cleanchan'),
+    Voice: require('./voice'),
+    Judi: require('./judi'),
+    saucenao: require('./saucenao'),
+    S: require('./s'),
+    Mocking: require('./mocking')
 }

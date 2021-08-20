@@ -6,7 +6,7 @@ const { setKelas, getJadwal, getKelas } = require('./utilities/db/dbkelas')
 const discordBot = require('./utilities/bot')
 const botCommands = require('./commands')
 const { addTugas, getTugas, getRoleId } = require('./utilities/db/dbtugas')
-
+const {addCredit, getCredit, getAllCredit} = require('./utilities/db/dbcredit')
 discordBot.bot.on('ready', () => {
 
   console.log(`Logged in as ${discordBot.bot.user.tag}!`)
@@ -17,6 +17,10 @@ discordBot.bot.on('ready', () => {
   discordBot.bot.addTugas = addTugas
   discordBot.bot.getTugas = getTugas
   discordBot.bot.getRoleId = getRoleId
+  
+  discordBot.bot.addCredit = addCredit
+  discordBot.bot.getCredit = getCredit
+  discordBot.bot.getAllCredit = getAllCredit
 
   assignKelas(discordBot.bot)
   assignTugas(discordBot.bot)

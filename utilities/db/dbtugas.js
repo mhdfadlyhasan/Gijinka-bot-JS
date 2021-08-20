@@ -23,7 +23,7 @@ async function addTugas(clientsChat, role, tanggal, jam, deskripsi) {
     }
 }
 async function getTugas() {
-    const res = await client.query('SELECT * FROM tugas where tugas.tanggal >= (NOW() - interval \'2 day\')').then(result => {
+    const res = await client.query('SELECT * FROM tugas').then(result => {
         return result.rows
     }).catch(e => console.error(e.stack))
     return res

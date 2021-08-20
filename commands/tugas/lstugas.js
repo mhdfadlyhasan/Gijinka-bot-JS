@@ -5,19 +5,14 @@ module.exports = {
     description: 'list tugas kalian, kerjain woi!',
     usage: 'lstugas',
     async execute(msg,args){
+
+        var gbTugas = await msg.client.getTugas()
         var toSend = ""
-        // {
-        //     embed: {
-        //         color: 287888,
-        //         title: "**Daftar Tugas**",
-        //         fields: []
-        //     }
-        // }
         var i = 1
         _.forEach(gbTugas, function(element) {
-            var namakelas = classes.find(kelas=>kelas.role==element.role)
+            
             var date = `${element.tanggal.getDate().toString().padStart(2, '0')}-${(element.tanggal.getMonth()+1).toString().padStart(2, '0')}-${element.tanggal.getFullYear().toString().padStart(2, '0')}`
-            toSend+=`${i}.${namakelas.nama} Jam ${element.jam} tanggal: ${date}\n`
+            toSend=`${i}.${element.roleid} Jam ${element.deadline_jam} tanggal: ${date}\n`
             i+=1
         })
         
@@ -49,7 +44,6 @@ module.exports = {
         //         toSend.embed.fields[total].value += `\n${i}. **${el.matkul}** jam \`${el.date.getHours(tz).toString().padStart(2, '0')}:${el.date.getMinutes(tz).toString().padStart(2, '0')}\``
         //     }
         // })
-
         msg.channel.send(toSend);
     }
 };
